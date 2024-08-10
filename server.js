@@ -1,42 +1,51 @@
 // const express = require('express');
-// const app = express();
-// const data = require('./friend.json');
-// const fs = require('fs');
-// const data = fs.readFilesync('./friend.json', 'utf-8');
-// console.log(data);
+// const server =express();
 
-// const Myfun = (req, res, next) => {
-//     // console.log(req.query);
-//     if(req.query.age >= "19")
-//     {
-//         console.log('Success');
-//         next();        
-//     }
-//     else
-//     {
-//         res.json({message: "Sorry....."})
-//     }
-    
+// const morgan = require('morgan');
+// server.use(morgan('dev'));
+// const loggerFun = (req, res, next)=>{
+//  console.log(req.ip, req.url, reg.method)
+// next();
 // }
 
-// server.use(Myfun); //application
+// server.use(loggerFun);
+// in built middelware
 
-// POST, GET, PUT, PATCH, DELETE
-// Server.get("/", (req,res)=>{
-//     res.write('Welcome to Express Server');
-//     res.end();
-// })
+// server.use(express.json());
+//  server.use(express.urlencoded({extended: false}));
+//  server.use("/hello", express.static('public'))
 
-// serever.get("/login", Myfun, (req,res)=>{
-//     res.write('Welcome to Login Page');
-//     res.end();
-// })
+//   const myfun = (req,res,next)=>{
+//     console.log(req.body);
+//     next();
+//   }
 
-// Server.post("/", (req,res)=>{
-//     // res.write('Welcome to Post Method');
-//     res.send('<h1>Send Method</h1>');
-// })
+//   if(req.body.age >="18"){
+//     console.log('success');
+//     next();
+//     }else{
+//         req.json({message:"sorry  brother....."});
+// }
 
-// server.listen(2304, () => {
-//     console.log('server start at http://localhost:2304');
-// })
+// server.use(myfun);//application
+
+//post,get,put,patch,delete
+
+//  server.get("/", (req, res) => {
+//      res.write("Welcome to Express Server");
+//      res.end();
+//    } );
+
+//    server.get("/login", myFun, (req, res)=>{
+//     res.write("Welcome to Login Page");
+//     res.end(); 41
+//     });
+
+//     server.post("/", (req, res)=>{
+//          //res.write("Welcome to Post Method);
+//          res.send("<h1>POST METHOD</h1>");
+//     })
+
+//     server.listen(5555,()=>{
+//         console.log('server start at http://localhost:5555');
+//     });
