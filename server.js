@@ -1,51 +1,42 @@
-// const express = require('express');
-// const server =express();
+const express= require("express");
+const morgan = require("morgan");
+const app = express();
+const users = require("../D_backend/MONGODB/books.json");
 
-// const morgan = require('morgan');
-// server.use(morgan('dev'));
-// const loggerFun = (req, res, next)=>{
-//  console.log(req.ip, req.url, reg.method)
-// next();
-// }
+console.log(users);
 
-// server.use(loggerFun);
-// in built middelware
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended :false}));
 
-// server.use(express.json());
-//  server.use(express.urlencoded({extended: false}));
-//  server.use("/hello", express.static('public'))
+app.get("/",(req,res) =>{
+  res.send("welcome to express server");
 
-//   const myfun = (req,res,next)=>{
-//     console.log(req.body);
-//     next();
-//   }
+})
 
-//   if(req.body.age >="18"){
-//     console.log('success');
-//     next();
-//     }else{
-//         req.json({message:"sorry  brother....."});
-// }
+// crud
+// crud user
 
-// server.use(myfun);//application
+app.post("/user",(req,res) =>{
+    console.log(req.body);
+    users.push(req.body);
+    res.json({message:"user added success"});
+});
 
-//post,get,put,patch,delete
+// read - get all users
 
-//  server.get("/", (req, res) => {
-//      res.write("Welcome to Express Server");
-//      res.end();
-//    } );
+app.get("/user",(req,res)=>{
+  res.json(users);
+});
 
-//    server.get("/login", myFun, (req, res)=>{
-//     res.write("Welcome to Login Page");
-//     res.end(); 41
-//     });
+// get singal user
 
-//     server.post("/", (req, res)=>{
-//          //res.write("Welcome to Post Method);
-//          res.send("<h1>POST METHOD</h1>");
-//     })
+app.get("/user/:id",(req,res)=>{
+  let id = +req.params.id;
+  let items=users.find((user)=>user.id===id)
+  res.json(item);
+});
 
-//     server.listen(5555,()=>{
-//         console.log('server start at http://localhost:5555');
-//     });
+app.listen(1221 ,() =>{
+  console.log(`server start at http://localhost:1221`);
+});
